@@ -1,20 +1,27 @@
-import sqlite3
-import os
-from dotenv import load_dotenv
+from infraestructura.conexion import obtener_conexion
 
-# Cargar configuración desde .env
-load_dotenv()
+def inicializar_bd():
+    with obtener_conexion() as conn:
+        conn.execute("DROP TABLE IF EXISTS empleado;")
+        conn.execute("DROP TABLE IF EXISTS persona;")
+        
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS persona (
+                rut TEXT PRIMARY KEY,
+                nombre TEXT NOT NULL
+            );
+        """)
+        
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS empleado (
+                rut TEXT PRIMARY KEY,
+                fecha_ingreso TEXT NOT NULL,
+                sueldo_base REAL NOT NULL,
+                FOREIGN KEY (rut) REFERENCES persona(rut) ON DELETE CASCADE
+            );
+        """)
+        conn.commit()
+    print("Tablas 'persona' y 'empleado' creadas correctamente.")
 
-nombre_bd = os.getenv("DB_NOMBRE")
-
-# Conectar a la base de datos
-conn = sqlite3.connect(nombre_bd)
-
-# Leer y ejecutar el archivo del esquema SQL
-with open("db/01_esquema.sql", "r", encoding="utf-8") as f:
-    esquema_sql = f.read()
-
-conn.executescript(esquema_sql)
-conn.close()
-
-print("Base de datos e infraestructura de tablas creadas correctamente.")
+if __name__ == "__main__":
+    inicializar_bd()

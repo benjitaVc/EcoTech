@@ -1,18 +1,22 @@
+from datetime import date
 from dominio.persona import Persona
 
 class Empleado(Persona):
     """Un Empleado ES UNA Persona (aplica herencia)."""
 
-    def __init__(self, rut: str, nombre: str, fecha_ingreso: str, sueldo_base: float):
-        # 1. Llamamos a la clase base (Persona) para que guarde el RUT y nombre con seguridad
+    def __init__(self, rut: str, nombre: str, fecha_ingreso, sueldo_base: float):
+        # 1. Llamamos a la clase base Persona para registrar rut y nombre
         super().__init__(rut, nombre)
-        
-        self.fecha_ingreso = fecha_ingreso
-        self._sueldo_base = None
-        
-        # 2. Usamos nuestro filtro de seguridad para el sueldo
+
+        # 2. Asignamos la fecha de ingreso
+        if isinstance(fecha_ingreso, str):
+            self.fecha_ingreso = date.fromisoformat(fecha_ingreso)
+        else:
+            self.fecha_ingreso = fecha_ingreso
+
+        # 3. Asignamos el sueldo base con el setter
         self.set_sueldo_base(sueldo_base)
-        
+
         self.registros = []
         self.departamento = None
 
@@ -26,14 +30,5 @@ class Empleado(Persona):
         """Devuelve el sueldo base guardado."""
         return self._sueldo_base
 
-    def registrar_hora(self, registro):
-        """Agrega un registro de tiempo a la lista."""
-        self.registros.append(registro)
-
-    def total_horas(self) -> float:
-        """Suma las horas de todos los registros del empleado."""
-        return sum(r.horas for r in self.registros)
-
-    def __str__(self) -> str:
-        """Texto bonito que describe al empleado al usar print()."""
-        return f"Empleado: {self.nombre} | Sueldo: ${self._sueldo_base:,.0f} | Horas Totales: {self.total_horas()}h"
+    def __repr__(self):
+        return f"Empleado(rut='{self.rut}', nombre='{self.nombre}', fecha_ingreso={self.fecha_ingreso}, sueldo_base={self._sueldo_base})"
