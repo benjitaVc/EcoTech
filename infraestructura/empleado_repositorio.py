@@ -1,6 +1,8 @@
+import sqlite3
 from datetime import date
 from dominio.empleado import Empleado
 from infraestructura.conexion import obtener_conexion
+from dominio.excepciones import RutDuplicadoError, EmpleadoNoEncontradoError
 
 class EmpleadoRepositorio:
     """Repositorio parametrizado para la entidad Empleado."""
@@ -17,12 +19,15 @@ class EmpleadoRepositorio:
         )
 
     def guardar(self, empleado: Empleado) -> Empleado:
-        """Inserta persona y empleado usando marcadores ?."""
-        with obtener_conexion() as conn:
+        """Inserta persona y empleado usando transacciones atómicas explícitas y ?."""
+        conn = obtener_conexion()
+        try:
+            # 1. Primera escritura
             conn.execute(
                 "INSERT INTO persona (rut, nombre) VALUES (?, ?)",
                 (empleado.rut, empleado.nombre),
             )
+            # 2. Segunda escritura
             conn.execute(
                 """INSERT INTO empleado (rut, fecha_ingreso, sueldo_base)
                    VALUES (?, ?, ?)""",
@@ -32,7 +37,18 @@ class EmpleadoRepositorio:
                     empleado.get_sueldo_base(),
                 ),
             )
-        return empleado
+            # 3. Caso de éxito: confirmamos ambas transacciones en disco
+            conn.commit()
+            return empleado
+        except sqlite3.IntegrityError:
+            # 4. Caso de fallo: deshacemos todo para evitar corrupción de datos
+            conn.rollback()
+            raise RutDuplicadoError(f"Error: El RUT {empleado.rut} ya se encuentra registrado.")
+        except Exception as e:
+            conn.rollback()
+            raise e
+        finally:
+            conn.close()
 
     def obtener(self, rut: str):
         """Consulta un empleado por RUT. Devuelve Empleado o None si no existe."""
@@ -58,16 +74,20 @@ class EmpleadoRepositorio:
         return [self._fila_a_empleado(f) for f in filas]
 
     def actualizar(self, empleado: Empleado) -> int:
-        """Actualiza el sueldo base y devuelve la cantidad de filas modificadas."""
+        """Actualiza el sueldo base. Lanza error si el empleado no existe."""
         with obtener_conexion() as conn:
             cur = conn.execute(
                 "UPDATE empleado SET sueldo_base = ? WHERE rut = ?",
                 (empleado.get_sueldo_base(), empleado.rut),
             )
+            if cur.rowcount == 0:
+                raise EmpleadoNoEncontradoError(f"No se pudo actualizar: RUT {empleado.rut} no existe.")
         return cur.rowcount
 
     def eliminar(self, rut: str) -> bool:
-        """Aplica DELETE real del registro según nuestra decisión de diseño."""
+        """Aplica DELETE real del registro. Lanza error si no existe."""
         with obtener_conexion() as conn:
             cur = conn.execute("DELETE FROM empleado WHERE rut = ?", (rut,))
-        return cur.rowcount > 0
+            if cur.rowcount == 0:
+                raise EmpleadoNoEncontradoError(f"No se pudo eliminar: RUT {rut} no encontrado.")
+        return True
