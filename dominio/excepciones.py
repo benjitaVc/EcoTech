@@ -1,0 +1,6 @@
+from dominio.ecotech_error import EcoTechError
+from dominio.rut_duplicado_error import RutDuplicadoError
+from dominio.sueldo_invalido_error import SueldoInvalidoError
+from dominio.empleado_no_encontrado_error import EmpleadoNoEncontradoError
+from dominio.empleado_con_registros_error import EmpleadoConRegistrosError
+from dominio.error_conexion_error import ErrorConexionError

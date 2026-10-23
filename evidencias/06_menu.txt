@@ -1,0 +1,52 @@
+$ py main.py --menu
+
+ECOTECH
+1 Guardar empleado | 2 Listar empleados | 3 Buscar empleado
+4 Cambiar sueldo | 5 Eliminar empleado
+6 Guardar horas | 7 Listar horas | 8 Buscar registro
+9 Cambiar registro | 10 Eliminar registro | 0 Salir
+Opción: Elija una opción entre 0 y 10.
+
+ECOTECH
+1 Guardar empleado | 2 Listar empleados | 3 Buscar empleado
+4 Cambiar sueldo | 5 Eliminar empleado
+6 Guardar horas | 7 Listar horas | 8 Buscar registro
+9 Cambiar registro | 10 Eliminar registro | 0 Salir
+Opción: RUT: Nombre: Ingreso (AAAA-MM-DD): Sueldo, sin separador de miles: No se realizó la operación: El sueldo debe ser un número finito no negativo.
+
+ECOTECH
+1 Guardar empleado | 2 Listar empleados | 3 Buscar empleado
+4 Cambiar sueldo | 5 Eliminar empleado
+6 Guardar horas | 7 Listar horas | 8 Buscar registro
+9 Cambiar registro | 10 Eliminar registro | 0 Salir
+Opción: RUT: Nombre: Ingreso (AAAA-MM-DD): Sueldo, sin separador de miles: Empleado guardado.
+
+ECOTECH
+1 Guardar empleado | 2 Listar empleados | 3 Buscar empleado
+4 Cambiar sueldo | 5 Eliminar empleado
+6 Guardar horas | 7 Listar horas | 8 Buscar registro
+9 Cambiar registro | 10 Eliminar registro | 0 Salir
+Opción: RUT del empleado: Fecha (AAAA-MM-DD): Horas: Registro guardado con ID: 1
+
+ECOTECH
+1 Guardar empleado | 2 Listar empleados | 3 Buscar empleado
+4 Cambiar sueldo | 5 Eliminar empleado
+6 Guardar horas | 7 Listar horas | 8 Buscar registro
+9 Cambiar registro | 10 Eliminar registro | 0 Salir
+Opción: RUT: No se realizó la operación: No se puede borrar un empleado con registros de tiempo.
+
+ECOTECH
+1 Guardar empleado | 2 Listar empleados | 3 Buscar empleado
+4 Cambiar sueldo | 5 Eliminar empleado
+6 Guardar horas | 7 Listar horas | 8 Buscar registro
+9 Cambiar registro | 10 Eliminar registro | 0 Salir
+Opción: RUT (vacío = todos): 1 11111111-1 Registro (2026-10-22): 8.0 hrs
+
+ECOTECH
+1 Guardar empleado | 2 Listar empleados | 3 Buscar empleado
+4 Cambiar sueldo | 5 Eliminar empleado
+6 Guardar horas | 7 Listar horas | 8 Buscar registro
+9 Cambiar registro | 10 Eliminar registro | 0 Salir
+Opción: Hasta luego.
+
+Código de salida: 0

@@ -1,0 +1,54 @@
+
+classDiagram
+Persona <|-- Empleado
+Informe <|-- InformeNomina
+Informe <|-- InformeProyecto
+Departamento "0..1" o-- "0..*" Empleado : empleados / departamento
+Empleado "1" o-- "0..*" RegistroTiempo : registros cargados / empleado_rut
+InformeNomina --> Empleado : empleado
+class Persona {
+  _rut
+  _nombre
+  __init__(rut, nombre)
+}
+class Empleado {
+  _fecha_ingreso
+  _sueldo_base
+  registros
+  departamento
+  __init__(rut, nombre, fecha_ingreso, sueldo_base)
+  set_sueldo_base(sueldo_base)
+  get_sueldo_base()
+  calcular_total_horas()
+}
+class Departamento {
+  nombre
+  empleados
+  __init__(nombre)
+  agregar_empleado(empleado)
+}
+class RegistroTiempo {
+  _fecha
+  _horas
+  empleado_rut
+  id
+  __init__(fecha, horas, empleado_rut, id)
+  set_horas(horas)
+}
+class Informe {
+  <<abstract>>
+  titulo
+  __init__(titulo)
+  exportar()*
+}
+class InformeNomina {
+  empleado
+  __init__(titulo, empleado)
+  exportar()
+}
+class InformeProyecto {
+  proyecto
+  horas
+  __init__(titulo, proyecto, horas)
+  exportar()
+}

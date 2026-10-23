@@ -1,0 +1,65 @@
+$ py -m unittest discover -s tests -v
+CREAR: Empleado(rut='12345678-9', nombre='Ana Rojas', fecha_ingreso=2024-03-01, sueldo_base=950000.0)
+LISTAR: 1 empleado(s)
+ACTUALIZAR: sueldo comprobado
+REGISTROS: creación, lectura y actualización comprobadas
+POLIMORFISMO: Departamento: Informática (1 empleados)
+[NÓMINA] Sueldo base -> Empleado: Ana Rojas, Pago: $1,050,000
+[PROYECTO] Horas registradas -> Proyecto: EcoTech, Horas acumuladas: 7.0 hrs
+VALIDACIÓN: sueldo negativo rechazado; la demo continúa
+VALIDACIÓN: RUT duplicado rechazado; la demo continúa
+Payload probado: "' OR '1'='1"
+Búsqueda por nombre antes de guardarlo: []
+INYECCIÓN: el texto se trata como dato; no afecta a Ana
+INTEGRIDAD: borrado con historial bloqueado
+ELIMINAR: ambas entidades y reutilización del RUT comprobadas
+CREAR: Empleado(rut='12345678-9', nombre='Ana Rojas', fecha_ingreso=2024-03-01, sueldo_base=950000.0)
+LISTAR: 1 empleado(s)
+ACTUALIZAR: sueldo comprobado
+REGISTROS: creación, lectura y actualización comprobadas
+POLIMORFISMO: Departamento: Informática (1 empleados)
+[NÓMINA] Sueldo base -> Empleado: Ana Rojas, Pago: $1,050,000
+[PROYECTO] Horas registradas -> Proyecto: EcoTech, Horas acumuladas: 7.0 hrs
+VALIDACIÓN: sueldo negativo rechazado; la demo continúa
+VALIDACIÓN: RUT duplicado rechazado; la demo continúa
+Payload probado: "' OR '1'='1"
+Búsqueda por nombre antes de guardarlo: []
+INYECCIÓN: el texto se trata como dato; no afecta a Ana
+INTEGRIDAD: borrado con historial bloqueado
+ELIMINAR: ambas entidades y reutilización del RUT comprobadas
+test_crud_empleado_y_mapper (test_ecotech.PruebasEcoTech.test_crud_empleado_y_mapper) ... ok
+test_crud_tiempos_y_mapper (test_ecotech.PruebasEcoTech.test_crud_tiempos_y_mapper) ... ok
+test_demo_repetible_sin_tocar_base_real (test_ecotech.PruebasEcoTech.test_demo_repetible_sin_tocar_base_real) ... ok
+test_duplicado_no_modifica_datos (test_ecotech.PruebasEcoTech.test_duplicado_no_modifica_datos) ... ok
+test_fk_activas_y_sin_huerfanos (test_ecotech.PruebasEcoTech.test_fk_activas_y_sin_huerfanos) ... ok
+test_horas_invalidas_y_limites (test_ecotech.PruebasEcoTech.test_horas_invalidas_y_limites) ... ok
+test_id_asignado_por_bd (test_ecotech.PruebasEcoTech.test_id_asignado_por_bd) ... ok
+test_informes_y_abstraccion (test_ecotech.PruebasEcoTech.test_informes_y_abstraccion) ... ok
+test_inicializar_conserva_datos (test_ecotech.PruebasEcoTech.test_inicializar_conserva_datos) ... ok
+test_inyeccion_todos_metodos_empleado (test_ecotech.PruebasEcoTech.test_inyeccion_todos_metodos_empleado) ... ok
+test_inyeccion_todos_metodos_tiempos (test_ecotech.PruebasEcoTech.test_inyeccion_todos_metodos_tiempos) ... ok
+test_no_encontrados (test_ecotech.PruebasEcoTech.test_no_encontrados) ... ok
+test_payload_en_campos_tipados_se_rechaza (test_ecotech.PruebasEcoTech.test_payload_en_campos_tipados_se_rechaza) ... ok
+test_persona_y_fechas_invalidas (test_ecotech.PruebasEcoTech.test_persona_y_fechas_invalidas) ... ok
+test_restrict_y_borrado_atomico (test_ecotech.PruebasEcoTech.test_restrict_y_borrado_atomico) ... ok
+test_rollback_segundo_insert_y_error_correcto (test_ecotech.PruebasEcoTech.test_rollback_segundo_insert_y_error_correcto) ... ok
+test_sueldos_invalidos_y_cero (test_ecotech.PruebasEcoTech.test_sueldos_invalidos_y_cero) ... ok
+test_transaccion_cierra_y_revierte (test_ecotech.PruebasEcoTech.test_transaccion_cierra_y_revierte) ... ok
+test_traslado_departamento_sin_duplicados (test_ecotech.PruebasEcoTech.test_traslado_departamento_sin_duplicados) ... ok
+test_base_invalida_controlada (test_es2.PruebasES2.test_base_invalida_controlada) ... ok
+test_cierre_si_falla_activar_claves (test_es2.PruebasES2.test_cierre_si_falla_activar_claves) ... ok
+test_configuracion_env_y_prioridad_del_entorno (test_es2.PruebasES2.test_configuracion_env_y_prioridad_del_entorno) ... ok
+test_configuracion_por_defecto_y_vacia (test_es2.PruebasES2.test_configuracion_por_defecto_y_vacia) ... ok
+test_error_de_conexion_controlado (test_es2.PruebasES2.test_error_de_conexion_controlado) ... ok
+test_error_sql_en_menu_permite_seguir (test_es2.PruebasES2.test_error_sql_en_menu_permite_seguir) ... ok
+test_menu_crud_completo_con_historial (test_es2.PruebasES2.test_menu_crud_completo_con_historial) ... ok
+test_menu_no_encontrados_y_fin_de_entrada (test_es2.PruebasES2.test_menu_no_encontrados_y_fin_de_entrada) ... ok
+test_menu_se_recupera_de_datos_invalidos_y_duplicados (test_es2.PruebasES2.test_menu_se_recupera_de_datos_invalidos_y_duplicados) ... ok
+test_total_horas_es_un_calculo_del_dominio (test_es2.PruebasES2.test_total_horas_es_un_calculo_del_dominio) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.571s
+
+OK
+
+Código de salida: 0

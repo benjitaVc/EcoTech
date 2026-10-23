@@ -1,0 +1,4 @@
+$ py main.py --menu
+No se pudo completar la operación: No se pudo abrir la base. Revise DB_NOMBRE, la carpeta y sus permisos.
+
+Código de salida: 1

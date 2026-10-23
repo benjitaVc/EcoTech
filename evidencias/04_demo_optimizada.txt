@@ -1,0 +1,17 @@
+$ py -O main.py
+CREAR: Empleado(rut='12345678-9', nombre='Ana Rojas', fecha_ingreso=2024-03-01, sueldo_base=950000.0)
+LISTAR: 1 empleado(s)
+ACTUALIZAR: sueldo comprobado
+REGISTROS: creación, lectura y actualización comprobadas
+POLIMORFISMO: Departamento: Informática (1 empleados)
+[NÓMINA] Sueldo base -> Empleado: Ana Rojas, Pago: $1,050,000
+[PROYECTO] Horas registradas -> Proyecto: EcoTech, Horas acumuladas: 7.0 hrs
+VALIDACIÓN: sueldo negativo rechazado; la demo continúa
+VALIDACIÓN: RUT duplicado rechazado; la demo continúa
+Payload probado: "' OR '1'='1"
+Búsqueda por nombre antes de guardarlo: []
+INYECCIÓN: el texto se trata como dato; no afecta a Ana
+INTEGRIDAD: borrado con historial bloqueado
+ELIMINAR: ambas entidades y reutilización del RUT comprobadas
+
+Código de salida: 0

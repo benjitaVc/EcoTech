@@ -1,0 +1,10 @@
+$ py evidencias_transaccion.py
+COMMIT: persona = 1
+COMMIT: empleado = 1
+SEGUNDO INSERT rechazado: CHECK constraint failed: sueldo_base >= 0
+ROLLBACK: persona = 0
+ROLLBACK: empleado = 0
+Integridad referencial: []
+RESULTADO: no quedan datos parciales; el registro correcto se conserva: True
+
+Código de salida: 0
